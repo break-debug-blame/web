@@ -6,6 +6,7 @@ const ManifestPlugin = require('webpack-manifest-plugin');
 
 const env = require('./config/env');
 const common = require('./config/common');
+const loaders = require('./config/loaders');
 
 const config = {
     entry: {
@@ -21,7 +22,7 @@ const config = {
         }),
         new webpack.DllPlugin({
             name: '[name]',
-            path: path.join(env.paths.dist, 'common', '[name].json')
+            path: path.join(env.paths.dist, '[name].json')
         })
     ],
     devtool: false
@@ -29,5 +30,8 @@ const config = {
 
 module.exports = merge([
     common,
+    loaders.loadStyles(),
+    loaders.loadFonts(),
+    loaders.loadImages(),
     config
 ]);

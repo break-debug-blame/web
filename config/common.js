@@ -12,7 +12,7 @@ const common = {
     },
     resolve: {
         symlinks: false,
-        extensions: ['js', 'ts'],
+        extensions: ['.js', '.ts'],
         modules: [
             path.resolve(env.paths.root, 'node_modules')
         ]

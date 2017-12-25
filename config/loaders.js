@@ -43,10 +43,18 @@ exports.loadStyles = function () {
             rules: [
                 {
                     test: /\.css$/,
-                    use: [
-                        'style-loader',
-                        'css-loader'
-                    ]
+                    use: extract.extract({
+                        fallback: 'style-loader',
+                        use: [
+                            {
+                                loader: 'css-loader',
+                                options: {
+                                    minimize: env.min,
+                                    sourceMap: env.dev
+                                }
+                            }
+                        ]
+                    })
                 },
                 {
                     test: /\.scss$/,
